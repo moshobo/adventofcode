@@ -16,7 +16,7 @@ for string in strings:
         passports[i] = passports[i] + ' ' + string
 
 
-# Find the number of passports that have eight fields, or are only missing cid
+# Find the number of groups that have eight fields, or are only missing cid
 passport_count = 0
 complete_passports = []
 for passport in passports:
