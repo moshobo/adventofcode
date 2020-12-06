@@ -3,7 +3,7 @@ import pandas
 
 # Part I
 tree_count = 0
-forest = pandas.read_csv('day03_input.csv',header=None)
+forest = pandas.read_csv('day03_input.csv', header=None)
 
 df_width = 31 #len(forest[0])
 df_height = len(forest.index)
