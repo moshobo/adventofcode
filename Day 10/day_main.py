@@ -1,4 +1,4 @@
-data = open("example.txt", "r")
+data = open("input.txt", "r")
 joltages = [line.strip() for line in data]
 joltages = [int(item) for item in joltages]
 
@@ -19,51 +19,41 @@ print(count_1, count_3)
 print("Part I -- Product = ", count_3*count_1)
 print("Time: ~17 minutes, maybe less?")
 
-# Part II
-def multiplyList(myList):
-    # Multiply elements one by one
-    result = 1
-    for x in myList:
-        result = result * x
-    return result
-
+# Part II, attempt 2, maybe 4
 joltages.append(0)
 joltages.sort()
 joltages.append(joltages[-1] + 3)
-print(joltages)
 
+diffs = []
+for index, jolt in enumerate(joltages):
+    if jolt != joltages[-1]:
+        diff = joltages[index+1] - jolt
+        #print(jolt, joltages[index+1], diff)
+        diffs.append(diff)
 
-a = [1]
+i = 0
+prev = 0
 count = 0
-counts = []
-numbers = []
+two_count = 0
+triple_count = 0
+four_count = 0
+while i in range(0,len(diffs)):
+    if diffs[i] == 1:
+        count += 1
+    else:
+        if count == 2:
+            two_count += 1
+        if count == 3:
+            triple_count += 1
+        if count == 4:
+            four_count += 1
+        count = 0
+    prev = diffs[i]
+    i += 1
 
-for spacing in a:
-    i = 1
-    print("Spacing", spacing)
-    while i < len(joltages) - spacing -1:
-        lead = joltages[i]
-        ahead = joltages[i + spacing]
-        trail = joltages[i-1]
-        print(ahead, lead, trail)
-        if trail + 1 == lead and lead + 1 == ahead:
-            count += 1
-            print("Count", count)
-            numbers.append(joltages[lead-2])
-        else:
-            if count > 0:
-                counts.append(count)
-            print(counts)
-            count = 0
+print("Part II -- ", (2**two_count) * (4**triple_count) * (7**four_count))
+# print((2**(single_count)) * (7**(triple_count)))
 
-        i += 1
-
-print(numbers)
-final_counts = [(len(counts)**ele) for ele in counts]
-print(counts)
-print(final_counts)
-final_amount = multiplyList(final_counts)
-print("Part II -- Count = ", final_amount)
 
 # for spacing in a:
 #     i = 1
